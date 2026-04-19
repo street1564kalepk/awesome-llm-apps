@@ -59,3 +59,4 @@ streamlit run ai_3dpygame_r1.py
 
 - If the browser automation fails, try refreshing the Trinket.io page and re-running the visualization step.
 - Trinket.io occasionally has rate limits; waiting a minute before retrying usually resolves the issue.
+- **Personal note:** I found that running this in a virtual environment avoids dependency conflicts with other pygame projects. Recommend using `python -m venv venv && source venv/bin/activate` before installing requirements.
