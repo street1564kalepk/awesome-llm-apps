@@ -48,3 +48,5 @@ streamlit run ai_chess_agent.py
 ```
 
 > **Note:** The `cd` path in step 1 has been corrected to match the actual directory structure in the repo.
+
+> **Personal note:** I found that using `gpt-4o-mini` instead of `gpt-4o` works well enough for casual games and is significantly cheaper. Worth trying if you're just experimenting.
