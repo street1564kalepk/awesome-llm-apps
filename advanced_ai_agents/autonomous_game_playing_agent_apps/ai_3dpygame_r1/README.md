@@ -31,6 +31,8 @@ pip install -r requirements.txt
 - Sign up for [DeepSeek](https://platform.deepseek.com/) and obtain your API key
 - Sign up for [OpenAI](https://platform.openai.com/) and obtain your API key
 
+> **Note:** Make sure to set your API keys as environment variables (`DEEPSEEK_API_KEY` and `OPENAI_API_KEY`) before running, or enter them in the Streamlit sidebar when prompted.
+
 4. Run the AI PyGame Visualizer
 ```bash
 streamlit run ai_3dpygame_r1.py
@@ -52,3 +54,8 @@ streamlit run ai_3dpygame_r1.py
      - Execution
      - Visualization viewing
 4. **User Interface:** Streamlit provides an intuitive interface for entering queries, viewing code, and managing the visualization process.
+
+### Troubleshooting
+
+- If the browser automation fails, try refreshing the Trinket.io page and re-running the visualization step.
+- Trinket.io occasionally has rate limits; waiting a minute before retrying usually resolves the issue.
