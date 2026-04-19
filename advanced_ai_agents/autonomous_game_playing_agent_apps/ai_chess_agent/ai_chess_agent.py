@@ -38,7 +38,7 @@ Choose your best move and explain your reasoning."""
 
     response = client.messages.create(
         model="claude-opus-4-5",
-        max_tokens=300,
+        max_tokens=500,  # increased from 300 to give the AI more room to explain its reasoning
         system=SYSTEM_PROMPT.format(color=color_name),
         messages=[{"role": "user", "content": prompt}],
     )
@@ -95,71 +95,4 @@ def main():
             st.session_state.board,
             size=450,
             lastmove=(
-                st.session_state.board.peek()
-                if st.session_state.board.move_stack
-                else None
-            ),
-        )
-        st.image(board_svg.encode(), use_container_width=False)
-
-    with col2:
-        st.subheader("Game Controls")
-
-        if st.button("🔄 New Game", use_container_width=True):
-            initialize_game()
-            st.rerun()
-
-        st.info(st.session_state.status_message)
-
-        # Human move input
-        if not st.session_state.game_over and st.session_state.board.turn == chess.WHITE:
-            move_input = st.text_input(
-                "Your move (UCI format, e.g. e2e4):",
-                key="move_input",
-                placeholder="e2e4",
-            )
-
-            if st.button("Make Move", use_container_width=True):
-                try:
-                    move = chess.Move.from_uci(move_input.strip())
-                    if move in st.session_state.board.legal_moves:
-                        st.session_state.board.push(move)
-                        st.session_state.move_history.append(
-                            f"You: {move_input.strip()}"
-                        )
-
-                        if st.session_state.board.is_game_over():
-                            st.session_state.game_over = True
-                            st.session_state.status_message = "Game over! You won!"
-                        else:
-                            # AI's turn
-                            with st.spinner("AI is thinking..."):
-                                ai_move, reasoning = get_ai_move(
-                                    st.session_state.board, chess.BLACK
-                                )
-                            ai_chess_move = chess.Move.from_uci(ai_move)
-                            st.session_state.board.push(ai_chess_move)
-                            st.session_state.move_history.append(f"AI: {ai_move}")
-                            st.session_state.status_message = (
-                                f"AI played {ai_move}: {reasoning}"
-                            )
-
-                            if st.session_state.board.is_game_over():
-                                st.session_state.game_over = True
-                                st.session_state.status_message = "Game over! AI won!"
-                        st.rerun()
-                    else:
-                        st.error("Illegal move! Try again.")
-                except Exception as e:
-                    st.error(f"Invalid move format: {e}")
-
-        st.subheader("Move History")
-        if st.session_state.move_history:
-            for i, move in enumerate(reversed(st.session_state.move_history[-10:])):
-                st.text(move)
-        else:
-            st.text("No moves yet")
-
-
-if __name__ == "__main__":
-    main()
+  
