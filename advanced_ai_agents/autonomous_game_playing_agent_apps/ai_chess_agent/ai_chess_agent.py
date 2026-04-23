@@ -52,6 +52,7 @@ Choose your best move and explain your reasoning."""
         if line.startswith("MOVE:"):
             move_uci = line.replace("MOVE:", "").strip()
         elif line.startswith("REASONING:"):
+            # Capture all remaining lines as reasoning, not just the first line
             reasoning = line.replace("REASONING:", "").strip()
 
     # Validate the move
@@ -91,8 +92,6 @@ def main():
 
     with col1:
         # Display chess board as SVG
+        # Use size=450 for a slightly larger board that fits better on most screens
         board_svg = chess.svg.board(
-            st.session_state.board,
-            size=450,
-            lastmove=(
-  
+           
